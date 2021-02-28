@@ -22,7 +22,7 @@ defmodule Rocketpay.Accounts.Withdraw do
 
   # Adding both values
   defp handle_cast({:ok, value}, balance), do: Decimal.sub(balance, value)
-  defp handle_cast(:error, _reason), do: {:error, "Invalid value for deposit"}
+  defp handle_cast(:error, _reason), do: {:error, "Invalid value for withdraw"}
 
   defp sub_values(%Account{balance: balance}, value) do
     value
