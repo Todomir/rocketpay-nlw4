@@ -18,7 +18,7 @@ defmodule RocketpayWeb.AccountsView do
 
   def render(
     "transaction.json",
-    %TransactionResponse{ to: to, from: from }
+    %{transaction: %TransactionResponse{ to: to, from: from }}
   )
   do
     %{
