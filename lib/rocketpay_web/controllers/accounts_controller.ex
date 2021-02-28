@@ -27,6 +27,26 @@ defmodule RocketpayWeb.AccountsController do
       |> put_status(:created)
       |> render("transaction.json", transaction: transaction)
     end
+
+    # Async tasks
+    # -----------------------------------------------------------------------
+    # task = Task.async(fn -> Rocketpay.transaction(params) end)
+
+    # with {:ok, %TransactionResponse{} = transaction} <- Task.await(task) do
+    #   conn
+    #   |> put_status(:created)
+    #   |> render("transaction.json", transaction: transaction)
+    # end
+    # -----------------------------------------------------------------------
+
+    # Async tasks with synchronous response
+    # -----------------------------------------------------------------------
+    # Task.start(fn -> Rocketpay.transaction(params) end)
+
+    #   conn
+    #   |> put_status(:no_content)
+    #   |> text("")
+    # -----------------------------------------------------------------------
   end
 
 end
