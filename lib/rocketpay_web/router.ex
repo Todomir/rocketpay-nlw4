@@ -1,9 +1,17 @@
 defmodule RocketpayWeb.Router do
   use RocketpayWeb, :router
 
+  # import Plug.BasicAuth
+
   pipeline :api do
     plug :accepts, ["json"]
   end
+
+  # Creating auth pipeline
+  # ----------------------
+  # pipeline :auth do
+  #   plug :basic_auth, Application.compile_env(:rocketpay, :basic_auth)
+  # end
 
   scope "/api", RocketpayWeb do
     pipe_through :api
@@ -14,6 +22,16 @@ defmodule RocketpayWeb.Router do
     post "/accounts/:id/withdraw", AccountsController, :withdraw
     post "/accounts/transaction", AccountsController, :transaction
   end
+
+  # Added auth to an routes scope
+  # -----------------------------
+  # scope "/api", RocketpayWeb do
+  #   pipe_through [:api, :auth]
+
+  #   post "/accounts/:id/deposit", AccountsController, :deposit
+  #   post "/accounts/:id/withdraw", AccountsController, :withdraw
+  #   post "/accounts/transaction", AccountsController, :transaction
+  # end
 
   # Enables LiveDashboard only for development
   #
